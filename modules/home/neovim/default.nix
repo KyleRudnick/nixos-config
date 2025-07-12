@@ -44,8 +44,8 @@ in {
     ];
   };
 
-  home.file.".config/nvim" = {
-    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/zaneyos/modules/home/neovim/nvim";
+  home.file."./config/nvim" = {
+    source = ./nvim;
     recursive = true;
   };
 

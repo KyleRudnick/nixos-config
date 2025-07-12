@@ -10,7 +10,7 @@ if not vim.loop.fs_stat(lazypath) then
     })
 end
 vim.opt.rtp:prepend(lazypath)
-vim.g.mapleader = " "
+vim.g.mapleader = ""
 vim.opt.termguicolors = true
 vim.opt.guicursor = ""
 

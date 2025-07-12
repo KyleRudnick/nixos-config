@@ -24,7 +24,7 @@ in {
     ./lazygit.nix
 #    ./nvf.nix
     ./rofi
-    ./neovim
+    ./neovim.nix
     ./qt.nix
     ./scripts
     ./starship.nix
