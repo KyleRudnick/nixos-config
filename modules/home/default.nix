@@ -1,6 +1,8 @@
-{host, ...}: let
+{ host, ... }:
+let
   inherit (import ../../hosts/${host}/variables.nix) waybarChoice;
-in {
+in
+{
   imports = [
     ./evil-helix.nix
     ./tmux.nix
@@ -10,6 +12,7 @@ in {
     ./bat.nix
     ./btop.nix
     ./cava.nix
+    ./devenv.nix
     ./emoji.nix
     ./eza.nix
     ./fastfetch
@@ -22,7 +25,8 @@ in {
     ./hyprland
     ./kitty.nix
     ./lazygit.nix
-#    ./nvf.nix
+    #    ./nvf.nix
+    ./rio
     ./rofi
     ./neovim.nix
     ./qt.nix
@@ -38,6 +42,7 @@ in {
     ./wlogout
     ./xdg.nix
     ./yazi
+    ./zellij
     ./zoxide.nix
     ./zsh
   ];

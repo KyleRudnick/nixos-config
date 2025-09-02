@@ -9,13 +9,16 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
     nvf.url = "github:notashelf/nvf";
     stylix.url = "github:danth/stylix/release-25.05";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    rio.url = "github:raphamorim/rio/main";
   };
 
-  outputs = {nixpkgs, ...} @ inputs: let
+  outputs = {nixpkgs, rio, nixpkgs-unstable, ...} @ inputs: let
     system = "x86_64-linux";
     host = "kyle";
     profile = "nvidia";
     username = "kyle";
+    pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
   in {
     nixosConfigurations = {
       amd = nixpkgs.lib.nixosSystem {
@@ -25,6 +28,7 @@
           inherit username;
           inherit host;
           inherit profile;
+	  inherit pkgs-unstable;
         };
         modules = [./profiles/amd];
       };
@@ -35,6 +39,7 @@
           inherit username;
           inherit host;
           inherit profile;
+	  inherit pkgs-unstable;
         };
         modules = [./profiles/nvidia];
       };
@@ -45,6 +50,7 @@
           inherit username;
           inherit host;
           inherit profile;
+	  inherit pkgs-unstable;
         };
         modules = [./profiles/nvidia-laptop];
       };
@@ -55,6 +61,7 @@
           inherit username;
           inherit host;
           inherit profile;
+	  inherit pkgs-unstable;
         };
         modules = [./profiles/intel];
       };
@@ -65,6 +72,7 @@
           inherit username;
           inherit host;
           inherit profile;
+	  inherit pkgs-unstable;
         };
         modules = [./profiles/vm];
       };

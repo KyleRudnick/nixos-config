@@ -1,8 +1,6 @@
-{pkgs, ...}: {
+{pkgs, pkgs-unstable, ...}: {
   environment.systemPackages = with pkgs; [
-    audacity
     discord
-    nodejs
-    obs-studio
+    vim
   ];
 }

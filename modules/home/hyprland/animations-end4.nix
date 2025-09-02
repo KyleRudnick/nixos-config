@@ -1,9 +1,10 @@
-{...}: {
+{ ... }:
+{
   wayland.windowManager.hyprland.settings = {
     # Name: END-4
     # Credit: END-4 project https://github.com/end-4/dots-hyprland
     animations = {
-      enabled = true;
+      enabled = false;
       bezier = [
         "linear, 0, 0, 1, 1"
         "md3_standard, 0.2, 0, 0, 1"

@@ -3,14 +3,15 @@
   config,
   pkgs,
   ...
-}: let
-  inherit
-    (import ../../../hosts/${host}/variables.nix)
+}:
+let
+  inherit (import ../../../hosts/${host}/variables.nix)
     extraMonitorSettings
     keyboardLayout
     stylixImage
     ;
-in {
+in
+{
   home.packages = with pkgs; [
     swww
     grim
@@ -39,7 +40,7 @@ in {
     systemd = {
       enable = true;
       enableXdgAutostart = true;
-      variables = ["--all"];
+      variables = [ "--all" ];
     };
     xwayland = {
       enable = true;
@@ -47,7 +48,7 @@ in {
     settings = {
       exec-once = [
         "[workspace 1 silent] firefox"
-        "[workspace 2 silent] kitty"
+        "[workspace 2 silent] rio"
         "[workspace 5 silent] spotify"
         "[workspace 6 silent] discord"
         "hyprctl dispatch workspace 1"
@@ -69,11 +70,12 @@ in {
         "2,monitor:DP-1"
         "3,monitor:DP-1"
         "4,monitor:DP-1"
-
-        "5,monitor:HDMI-A-2"
+        "5,monitor:DP-1"
         "6,monitor:HDMI-A-2"
         "7,monitor:HDMI-A-2"
         "8,monitor:HDMI-A-2"
+        "9,monitor:HDMI-A-2"
+        "0,monitor:HDMI-A-2"
       ];
       input = {
         kb_layout = "${keyboardLayout}";
@@ -107,11 +109,11 @@ in {
       general = {
         "$modifier" = "SUPER";
         layout = "dwindle";
-        gaps_in = 6;
-        gaps_out = 8;
+        gaps_in = 2;
+        gaps_out = 2;
         border_size = 2;
         resize_on_border = true;
-        "col.active_border" = "rgb(${config.lib.stylix.colors.base08}) rgb(${config.lib.stylix.colors.base0C}) 45deg";
+        "col.active_border" = "rgb(${config.lib.stylix.colors.base0B})";
         "col.inactive_border" = "rgb(${config.lib.stylix.colors.base01})";
       };
 
@@ -124,7 +126,7 @@ in {
         disable_splash_rendering = true;
         enable_swallow = false;
         vfr = true; # Variable Frame Rate
-        vrr = 2; #Variable Refresh Rate  Might need to set to 0 for NVIDIA/AQ_DRM_DEVICES
+        vrr = 2; # Variable Refresh Rate  Might need to set to 0 for NVIDIA/AQ_DRM_DEVICES
         # Screen flashing to black momentarily or going black when app is fullscreen
         # Try setting vrr to 0
 
@@ -149,7 +151,7 @@ in {
           new_optimizations = true;
         };
         shadow = {
-          enabled = true;
+          enabled = false;
           range = 4;
           render_power = 3;
           color = "rgba(1a1a1aee)";
@@ -184,7 +186,9 @@ in {
 
     extraConfig = "
       monitor = , preferred, auto, 1
-      ${extraMonitorSettings}
+      ${
+            extraMonitorSettings
+          }
       # To enable blur on waybar uncomment the line below
       # Thanks to SchotjeChrisman
       # layerrule = blur,waybar

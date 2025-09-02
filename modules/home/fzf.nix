@@ -29,6 +29,7 @@ in {
       "-i"
       "--no-bold"
       "--bind='enter:execute(nvim {})'"
+      "--bind='ctrl-p:print()+accept'"
       "--preview='bat --style=numbers --color=always --line-range :500 {}'"
       "--preview-window=right:60%:wrap"
     ];

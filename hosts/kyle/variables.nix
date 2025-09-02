@@ -16,7 +16,7 @@
 
   # Program Options
   browser = "firefox"; # Set Default Browser (google-chrome-stable for google-chrome)
-  terminal = "ghostty"; # Set Default System Terminal
+  terminal = "rio"; # Set Default System Terminal
   keyboardLayout = "us";
   consoleKeyMap = "us";
 
@@ -31,7 +31,7 @@
   printEnable = true;
 
   # Set Stylix Image
-  stylixImage = ../../wallpapers/mountainscapedark.jpg;
+  stylixImage = ../../wallpapers/firewatch.jpg;
 
   # Set Waybar
   # Includes alternates such as:
