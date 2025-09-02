@@ -2,6 +2,8 @@
 {
   environment.systemPackages = with pkgs; [
     # noisetorch
+    websocat
+    typst
     slack
     discord
     libreoffice-qt6-fresh

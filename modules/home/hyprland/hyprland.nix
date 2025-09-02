@@ -78,11 +78,8 @@ in
         "0,monitor:HDMI-A-2"
       ];
       input = {
-        kb_layout = "${keyboardLayout}";
-        kb_options = [
-          "grp:alt_caps_toggle"
-          "caps:super"
-        ];
+        kb_layout = "us,de";
+        kb_options = "grp:alt_space_toggle";
         numlock_by_default = true;
         repeat_delay = 300;
         follow_mouse = 1;

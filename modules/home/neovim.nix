@@ -1,4 +1,10 @@
-{ pkgs, config, pkgs-unstable, ... }: let
+{
+  pkgs,
+  config,
+  pkgs-unstable,
+  ...
+}:
+let
 
   treesitterWithGrammars = pkgs.vimPlugins.nvim-treesitter.withPlugins (p: [
     p.bash
@@ -26,29 +32,31 @@
     p.typescript
     p.vue
     p.yaml
-    p.zig 
+    p.zig
   ]);
 
   treesitter-parsers = pkgs.symlinkJoin {
     name = "treesitter-parsers";
     paths = treesitterWithGrammars.dependencies;
   };
-in {
+in
+{
   home.packages = with pkgs; [
     lua-language-server
     yaml-language-server
-		nixd
+    nixd
     vscode-langservers-extracted
     prettierd
     shfmt
     zls
     gopls
+    tinymist
     nodePackages_latest.typescript-language-server
   ];
 
-   # Use the external dotfiles nvim config for quicker hacking
-  home.file.".config/nvim".source = config.lib.file.mkOutOfStoreSymlink
-    "${config.home.homeDirectory}/dotfiles/nvim";
+  # Use the external dotfiles nvim config for quicker hacking
+  home.file.".config/nvim".source =
+    config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/nvim";
 
   programs.neovim = {
     enable = false;
@@ -60,7 +68,4 @@ in {
     ];
   };
 
-
 }
-
-

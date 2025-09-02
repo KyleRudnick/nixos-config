@@ -17,7 +17,7 @@
   # Program Options
   browser = "firefox"; # Set Default Browser (google-chrome-stable for google-chrome)
   terminal = "rio"; # Set Default System Terminal
-  keyboardLayout = "us";
+  keyboardLayout = "us,de";
   consoleKeyMap = "us";
 
   # For Nvidia Prime support
