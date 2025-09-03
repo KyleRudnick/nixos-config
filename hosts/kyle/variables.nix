@@ -16,7 +16,7 @@
 
   # Program Options
   browser = "firefox"; # Set Default Browser (google-chrome-stable for google-chrome)
-  terminal = "rio"; # Set Default System Terminal
+  terminal = "ghostty"; # Set Default System Terminal
   keyboardLayout = "us,de";
   consoleKeyMap = "us";
 

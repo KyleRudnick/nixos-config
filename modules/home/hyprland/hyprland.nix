@@ -144,6 +144,7 @@ in
           enabled = true;
           size = 5;
           passes = 3;
+          vibrancy = 0.2;
           ignore_opacity = false;
           new_optimizations = true;
         };

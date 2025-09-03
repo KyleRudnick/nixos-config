@@ -53,9 +53,6 @@
 
     [window]
     opacity = 1.0
-    [shell]
-    program = "zellij"
-    args = [""]
     [cursor]
     shape = 'block'
     [navigation]
