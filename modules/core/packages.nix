@@ -1,7 +1,6 @@
 { pkgs, ... }:
 {
   programs = {
-    firefox.enable = true; # Firefox is not installed by default
     dconf.enable = true;
     seahorse.enable = true;
     hyprland.enable = true; # create desktop file and depedencies if you switch to GUI login MGR
@@ -33,6 +32,7 @@
     eza # Beautiful ls Replacement
     ffmpeg # Terminal Video / Audio Editing
     file-roller # Archive Manager
+    firefox
     gdu # graphical disk usage
     # gedit # Simple Graphical Text Editor
     # gimp # Great Photo Editor

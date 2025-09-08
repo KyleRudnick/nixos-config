@@ -48,9 +48,10 @@ in
     settings = {
       exec-once = [
         "[workspace 1 silent] firefox"
-        "[workspace 2 silent] rio"
+        "[workspace 2 silent] ghostty"
         "[workspace 5 silent] spotify"
         "[workspace 6 silent] discord"
+        "[workspace 6 silent] easyeffects"
         "hyprctl dispatch workspace 1"
         "wl-paste --type text --watch cliphist store # Stores only text data"
         "wl-paste --type image --watch cliphist store # Stores only image data"
