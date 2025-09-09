@@ -1,7 +1,6 @@
 {
   pkgs,
   config,
-  pkgs-unstable,
   ...
 }:
 let
@@ -56,7 +55,7 @@ in
 
   # Use the external dotfiles nvim config for quicker hacking
   home.file.".config/nvim".source =
-    config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/NixOS/dotfiles/nvim";
+    config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/nvim";
 
   programs.neovim = {
     enable = false;
