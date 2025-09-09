@@ -11,8 +11,8 @@
   };
 
   home.file.".config/zellij/config.kdl".source =
-    config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/zellij/config.kdl";
+    config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/NixOS/dotfiles/zellij/config.kdl";
 
   home.file.".config/zellij/layouts".source =
-    config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/zellij/layouts";
+    config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/NixOS/dotfiles/zellij/layouts";
 }
