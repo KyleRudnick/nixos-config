@@ -1,4 +1,4 @@
-{ pkgs, pkgs-unstable, ... }:
+{ pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
     gemini-cli

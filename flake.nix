@@ -1,5 +1,5 @@
 {
-  description = "ZaneyOS";
+  description = "Kyles Nix Config";
 
   inputs = {
     home-manager = {
@@ -13,69 +13,77 @@
     rio.url = "github:raphamorim/rio/main";
   };
 
-  outputs = {nixpkgs, rio, nixpkgs-unstable, ...} @ inputs: let
-    system = "x86_64-linux";
-    host = "kyle";
-    profile = "nvidia";
-    username = "kyle";
-    pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
-  in {
-    nixosConfigurations = {
-      amd = nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = {
-          inherit inputs;
-          inherit username;
-          inherit host;
-          inherit profile;
-	  inherit pkgs-unstable;
+  outputs =
+    {
+      nixpkgs,
+      rio,
+      nixpkgs-unstable,
+      ...
+    }@inputs:
+    let
+      system = "x86_64-linux";
+      host = "kyle";
+      profile = "nvidia";
+      username = "kyle";
+      pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
+    in
+    {
+      nixosConfigurations = {
+        amd = nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs = {
+            inherit inputs;
+            inherit username;
+            inherit host;
+            inherit profile;
+            inherit pkgs-unstable;
+          };
+          modules = [ ./profiles/amd ];
         };
-        modules = [./profiles/amd];
-      };
-      nvidia = nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = {
-          inherit inputs;
-          inherit username;
-          inherit host;
-          inherit profile;
-	  inherit pkgs-unstable;
+        nvidia = nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs = {
+            inherit inputs;
+            inherit username;
+            inherit host;
+            inherit profile;
+            inherit pkgs-unstable;
+          };
+          modules = [ ./profiles/nvidia ];
         };
-        modules = [./profiles/nvidia];
-      };
-      nvidia-laptop = nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = {
-          inherit inputs;
-          inherit username;
-          inherit host;
-          inherit profile;
-	  inherit pkgs-unstable;
+        nvidia-laptop = nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs = {
+            inherit inputs;
+            inherit username;
+            inherit host;
+            inherit profile;
+            inherit pkgs-unstable;
+          };
+          modules = [ ./profiles/nvidia-laptop ];
         };
-        modules = [./profiles/nvidia-laptop];
-      };
-      intel = nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = {
-          inherit inputs;
-          inherit username;
-          inherit host;
-          inherit profile;
-	  inherit pkgs-unstable;
+        intel = nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs = {
+            inherit inputs;
+            inherit username;
+            inherit host;
+            inherit profile;
+            inherit pkgs-unstable;
+          };
+          modules = [ ./profiles/intel ];
         };
-        modules = [./profiles/intel];
-      };
-      vm = nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = {
-          inherit inputs;
-          inherit username;
-          inherit host;
-          inherit profile;
-	  inherit pkgs-unstable;
+        vm = nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs = {
+            inherit inputs;
+            inherit username;
+            inherit host;
+            inherit profile;
+            inherit pkgs-unstable;
+          };
+          modules = [ ./profiles/vm ];
         };
-        modules = [./profiles/vm];
       };
     };
-  };
 }
