@@ -10,13 +10,11 @@
     nvf.url = "github:notashelf/nvf";
     stylix.url = "github:danth/stylix/release-25.05";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-    rio.url = "github:raphamorim/rio/main";
   };
 
   outputs =
     {
       nixpkgs,
-      rio,
       nixpkgs-unstable,
       ...
     }@inputs:

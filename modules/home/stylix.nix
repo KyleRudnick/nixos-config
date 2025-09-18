@@ -1,8 +1,8 @@
 _: {
   stylix.targets = {
-    rio.enable = true;
     neovim.enable = true;
     waybar.enable = false;
+    kitty.enable = true;
     rofi.enable = false;
     hyprland.enable = false;
     hyprlock.enable = false;

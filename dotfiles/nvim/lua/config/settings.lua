@@ -23,6 +23,9 @@ vim.o.showmode = false
 vim.o.breakindent = true
 vim.o.undofile = true
 
+vim.opt.grepprg = "rg --vimgrep"
+vim.opt.grepformat = "%f:%l:%c:%m,%f:%l:%m,%f"
+
 vim.schedule(function()
-	vim.o.clipboard = 'unnamedplus'
+  vim.o.clipboard = 'unnamedplus'
 end)

@@ -18,7 +18,6 @@
 
   environment.systemPackages = with pkgs; [
     gcc
-    spotify
     amfora # Fancy Terminal Browser For Gemini Protocol
     appimage-run # Needed For AppImage Support
     bottom # btop like util
@@ -42,6 +41,7 @@
     htop # Simple Terminal Based System Monitor
     hyprpicker # Color Picker
     eog # For Image Viewing
+    imagemagick # image manipulation
     inxi # CLI System Information Tool
     killall # For Killing All Instances Of Programs
     libnotify # For Notifications
@@ -61,6 +61,7 @@
     ripgrep # Improved Grep
     socat # Needed For Screenshots
     sox # audio support for FFMPEG
+    spotify
     unrar # Tool For Handling .rar Files
     unzip # Tool For Handling .zip Files
     usbutils # Good Tools For USB Devices

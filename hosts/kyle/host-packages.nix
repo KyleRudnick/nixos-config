@@ -1,13 +1,15 @@
 { pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
-    gemini-cli
-    easyeffects
-    websocat
-    typst
-    slack
+    cryptomator
     discord
+    easyeffects
+    gemini-cli
+    ghostscript
     libreoffice-qt6-fresh
+    slack
+    typst
+    websocat
   ];
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 }

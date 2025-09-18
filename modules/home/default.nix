@@ -26,7 +26,7 @@ in
     ./kitty.nix
     ./lazygit.nix
     #    ./nvf.nix
-    ./rio
+    # ./rio
     ./rofi
     ./neovim.nix
     ./qt.nix

@@ -1,6 +1,15 @@
-{profile, ...}: {
+{ profile, ... }:
+{
   # Services to start
   services = {
+    # Kubernetes k3s cluster
+    k3s = {
+      enable = true;
+      role = "server";
+      extraFlags = toString [
+        "--debug"
+      ];
+    };
     libinput.enable = true; # Input Handling
     fstrim.enable = true; # SSD Optimizer
     gvfs.enable = true; # For Mounting USB & More
@@ -10,10 +19,7 @@
     gnome.gnome-keyring.enable = true;
 
     smartd = {
-      enable =
-        if profile == "vm"
-        then false
-        else true;
+      enable = if profile == "vm" then false else true;
       autodetect = true;
     };
     pipewire = {
