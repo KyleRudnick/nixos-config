@@ -2,6 +2,7 @@
 {
   imports = [
     ./boot.nix
+    ./caching.nix
     ./flatpak.nix
     ./fonts.nix
     ./greetd.nix
@@ -14,6 +15,7 @@
     ./printing.nix
     ./security.nix
     ./services.nix
+    ./ssh.nix
     ./starfish.nix
     ./steam.nix
     ./stylix.nix

@@ -404,7 +404,7 @@ scrollback_lines_to_serialize 2000
  
 // How often in seconds sessions are serialized
 // 
-serialization_interval 10000
+serialization_interval 100
  
 // Enable or disable writing of session metadata to disk (if disabled, other sessions might not know
 // metadata info on this session)

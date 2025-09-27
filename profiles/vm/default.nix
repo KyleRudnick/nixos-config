@@ -1,4 +1,7 @@
-{host, ...}: {
+### Example Config for a VM build
+
+{ host, ... }:
+{
   imports = [
     ../../hosts/${host}
     ../../modules/drivers

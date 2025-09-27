@@ -21,7 +21,7 @@
     let
       system = "x86_64-linux";
       host = "kyle";
-      profile = "nvidia";
+      profile = "desktop";
       username = "kyle";
       pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
     in
@@ -38,7 +38,7 @@
           };
           modules = [ ./profiles/amd ];
         };
-        nvidia = nixpkgs.lib.nixosSystem {
+        desktop = nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = {
             inherit inputs;
@@ -47,7 +47,7 @@
             inherit profile;
             inherit pkgs-unstable;
           };
-          modules = [ ./profiles/nvidia ];
+          modules = [ ./profiles/desktop ];
         };
         nvidia-laptop = nixpkgs.lib.nixosSystem {
           inherit system;

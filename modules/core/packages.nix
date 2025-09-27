@@ -23,6 +23,7 @@
     bottom # btop like util
     brave # Brave Browser
     brightnessctl # For Screen Brightness Control
+    cachix
     cmatrix # Matrix Movie Effect In Terminal
     cowsay # Great Fun Terminal Program
     docker-compose # Allows Controlling Docker From A Single File
@@ -30,6 +31,7 @@
     dysk # disk usage util
     eza # Beautiful ls Replacement
     ffmpeg # Terminal Video / Audio Editing
+    file
     file-roller # Archive Manager
     firefox
     gdu # graphical disk usage

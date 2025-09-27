@@ -4,10 +4,11 @@
     cryptomator
     discord
     easyeffects
-    gemini-cli
+    aider-chat
     ghostscript
     libreoffice-qt6-fresh
     slack
+    sshfs
     typst
     websocat
   ];
