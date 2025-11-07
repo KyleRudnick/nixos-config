@@ -79,8 +79,7 @@ in
         "0,monitor:HDMI-A-2"
       ];
       input = {
-        kb_layout = "us,de";
-        kb_options = "grp:alt_space_toggle";
+        kb_layout = "us";
         numlock_by_default = true;
         repeat_delay = 300;
         follow_mouse = 1;

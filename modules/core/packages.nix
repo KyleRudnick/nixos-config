@@ -35,6 +35,7 @@
     file-roller # Archive Manager
     firefox
     gdu # graphical disk usage
+    gemini-cli
     # gedit # Simple Graphical Text Editor
     # gimp # Great Photo Editor
     glxinfo # Needed for inxi -G GPU info
@@ -54,6 +55,7 @@
     ncdu # Disk Usage Analyzer With Ncurses Interface
     nixfmt-rfc-style # Nix Formatter
     onefetch # shows current build info and stats
+    openssl
     pavucontrol # For Editing Audio Levels & Devices
     pciutils # Collection Of Tools For Inspecting PCI Devices
     picard # For Changing Music Metadata & Getting Cover Art

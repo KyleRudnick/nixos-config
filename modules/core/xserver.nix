@@ -1,6 +1,6 @@
 { host, ... }:
 let
-  inherit (import ../../hosts/${host}/variables.nix) keyboardLayout;
+  inherit (import ../../hosts/${host}/variables.nix) keyboardLayout keyboardVariant;
 in
 {
 
@@ -8,7 +8,6 @@ in
     enable = false;
     xkb = {
       layout = "${keyboardLayout}";
-      variant = "";
     };
   };
 }

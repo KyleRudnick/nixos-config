@@ -9,6 +9,7 @@
     theme = stylix
     background-opacity = 1.0
     font-size = 14
+    cursor-style-blink = false
     initial-command = "zellij -l welcome"
       #   # mouse-hide-while-typing = true
       #

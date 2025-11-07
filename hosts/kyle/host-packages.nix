@@ -1,7 +1,6 @@
 { pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
-    cryptomator
     discord
     easyeffects
     aider-chat
