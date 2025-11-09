@@ -7,7 +7,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
-    nvf.url = "github:notashelf/nvf";
+    zellij-nightly.url = "github:a-kenji/zellij-nix";
+    zellij-nightly.inputs.nixpkgs.follows = "nixpkgs-unstable";
     stylix.url = "github:danth/stylix/release-25.05";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
   };
@@ -16,6 +17,7 @@
     {
       nixpkgs,
       nixpkgs-unstable,
+      zellij-nightly,
       ...
     }@inputs:
     let
@@ -41,6 +43,7 @@
         desktop = nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = {
+            inherit zellij-nightly;
             inherit inputs;
             inherit username;
             inherit host;
@@ -48,28 +51,6 @@
             inherit pkgs-unstable;
           };
           modules = [ ./profiles/desktop ];
-        };
-        nvidia-laptop = nixpkgs.lib.nixosSystem {
-          inherit system;
-          specialArgs = {
-            inherit inputs;
-            inherit username;
-            inherit host;
-            inherit profile;
-            inherit pkgs-unstable;
-          };
-          modules = [ ./profiles/nvidia-laptop ];
-        };
-        intel = nixpkgs.lib.nixosSystem {
-          inherit system;
-          specialArgs = {
-            inherit inputs;
-            inherit username;
-            inherit host;
-            inherit profile;
-            inherit pkgs-unstable;
-          };
-          modules = [ ./profiles/intel ];
         };
         vm = nixpkgs.lib.nixosSystem {
           inherit system;

@@ -8,6 +8,11 @@ map("n", "<leader>gi", ":lua vim.lsp.buf.implementation()<CR>")
 map("n", "K", ":lua vim.lsp.buf.hover()<CR>")
 map("n", "<leader>rn", ":lua vim.lsp.buf.rename()<CR>")
 map("n", "<leader>gr", ":lua vim.lsp.buf.references()<CR>")
+map(
+  "n",
+  "<leader>i",
+  ":lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())"
+)
 -- go to previous buffer
 map("n", "<C-p>", ":bp<CR>")
 -- go to next buffer

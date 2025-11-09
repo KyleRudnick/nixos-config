@@ -3,7 +3,7 @@ keybinds clear-defaults=true {
       // hide_keybinds = "true"
     }
     locked {
-        bind "Ctrl space" { SwitchToMode "normal"; }
+        bind "Ctrl Space" { SwitchToMode "normal"; }
     }
     pane {
         bind "left" { MoveFocus "left"; }
@@ -198,6 +198,10 @@ keybinds clear-defaults=true {
         bind "l" { MoveFocus "right"; SwitchToMode "normal"; }
         bind "o" { FocusNextPane; }
         bind "p" { GoToPreviousTab; SwitchToMode "normal"; }
+        bind "H" { MovePane "left"; }
+        bind "J" { MovePane "down"; }
+        bind "K" { MovePane "up"; }
+        bind "L" { MovePane "right"; }
         bind "s" {
             LaunchOrFocusPlugin "zellij:session-manager" {
                 floating true
@@ -208,7 +212,7 @@ keybinds clear-defaults=true {
         bind "t" { NewTab; SwitchToMode "normal"; }
         bind "x" { CloseTab; SwitchToMode "normal"; }
         bind "r" { SwitchToMode "RenameTab"; TabNameInput 0;}
-        bind "Esc" { Quit; }
+        bind "Delete" { Quit; }
     }
 }
 

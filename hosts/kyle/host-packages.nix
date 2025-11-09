@@ -1,7 +1,7 @@
-{ pkgs, ... }:
+{ pkgs, zellij-nightly, ... }:
 {
   environment.systemPackages = with pkgs; [
-    discord
+    zellij-nightly.packages.${pkgs.system}.default
     easyeffects
     aider-chat
     ghostscript

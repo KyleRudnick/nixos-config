@@ -10,7 +10,7 @@
     background-opacity = 1.0
     font-size = 14
     cursor-style-blink = false
-    initial-command = "zellij -l welcome"
+    initial-command = ""
       #   # mouse-hide-while-typing = true
       #
       #   # keybindings
