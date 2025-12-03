@@ -24,6 +24,7 @@ let
     p.lua
     p.make
     p.markdown
+    p.markdown_inline
     p.nix
     p.python
     p.rust
@@ -49,6 +50,7 @@ in
     shfmt
     zls
     gopls
+    copilot-language-server
     tinymist
     nodePackages_latest.typescript-language-server
   ];

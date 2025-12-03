@@ -20,6 +20,7 @@ in
     ./gh.nix
     ./ghostty.nix
     ./git.nix
+    ./gpg.nix
     ./gtk.nix
     ./htop.nix
     ./hyprland

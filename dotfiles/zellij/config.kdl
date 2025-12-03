@@ -212,6 +212,7 @@ keybinds clear-defaults=true {
         bind "t" { NewTab; SwitchToMode "normal"; }
         bind "x" { CloseTab; SwitchToMode "normal"; }
         bind "r" { SwitchToMode "RenameTab"; TabNameInput 0;}
+        bind "R" { SwitchToMode "resize";}
         bind "Delete" { Quit; }
     }
 }

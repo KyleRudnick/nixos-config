@@ -23,6 +23,9 @@ vim.o.showmode = false
 vim.o.breakindent = true
 vim.o.undofile = true
 
+-- Avante asks for laststatus change
+vim.opt.laststatus = 3
+
 vim.opt.grepprg = "rg --vimgrep"
 vim.opt.grepformat = "%f:%l:%c:%m,%f:%l:%m,%f"
 
