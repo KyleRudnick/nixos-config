@@ -21,6 +21,7 @@ map('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
 map('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
 map('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 map('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+-- Bindings for Detour
 map("n", "<leader>gD", function()
   -- Open detour with the same buffer
   if not require("detour").Detour() then
@@ -28,3 +29,10 @@ map("n", "<leader>gD", function()
   end
   vim.lsp.buf.definition() -- jump to definition
 end)
+
+-- Binding for CodeCompanion
+
+map("n", "<leader>at", ":CodeCompanion /unit<CR>")
+map("n", "<leader>ac", ":CodeCompanionChat<CR>")
+map("n", "<leader>aa", ":CodeCompanionActions<CR>")
+map("n", "<leader>ae", ":CodeCompanion /explain<CR>")
