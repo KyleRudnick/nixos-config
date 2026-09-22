@@ -1,8 +1,11 @@
-{host, ...}: let
-  inherit (import ../../hosts/${host}/variables.nix) enableNFS;
-in {
-  services = {
-    rpcbind.enable = enableNFS;
-    nfs.server.enable = enableNFS;
+{ lib, config, ... }:
+with lib;
+let cfg = config.local.enableNFS; in
+{
+  options.local.enableNFS = mkEnableOption "NFS server";
+
+  config = mkIf cfg {
+    services.rpcbind.enable = true;
+    services.nfs.server.enable = true;
   };
 }

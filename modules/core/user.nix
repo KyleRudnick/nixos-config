@@ -1,39 +1,44 @@
 {
   pkgs,
   pkgs-unstable,
+  lib,
+  config,
   inputs,
   username,
-  host,
-  profile,
+  gitUsername,
+  gitEmail,
+  gui,
+  waybarChoice,
+  extraMonitorSettings,
+  keyboardLayout,
+  consoleKeyMap,
+  terminal,
+  browser,
+  clock24h,
+  thunarEnable,
   ...
 }:
-let
-  inherit (import ../../hosts/${host}/variables.nix) gitUsername;
-in
 {
   imports = [ inputs.home-manager.nixosModules.home-manager ];
-  home-manager = {
+
+  home-manager = lib.mkIf (!config.local.minimal) {
     useUserPackages = true;
     useGlobalPkgs = false;
     backupFileExtension = "backup";
     extraSpecialArgs = {
-      inherit
-        inputs
-        username
-        host
-        profile
-        pkgs-unstable
-        ;
+      inherit inputs username gitUsername gitEmail gui waybarChoice pkgs-unstable extraMonitorSettings keyboardLayout consoleKeyMap terminal browser clock24h thunarEnable;
+      stylixImage = config.stylixImage;
     };
     users.${username} = {
-      imports = [ ./../home ];
+      imports = if gui == "none" then [ ./../home/core ] else [ ./../home ];
       home = {
         username = "${username}";
         homeDirectory = "/home/${username}";
-        stateVersion = "23.11";
+        stateVersion = "26.05";
       };
     };
   };
+
   users.mutableUsers = true;
   users.users.${username} = {
     isNormalUser = true;

@@ -2,8 +2,8 @@
 {
   imports = [
     ../../modules/core
+    ../../modules/gui
   ];
 
   stylixImage = ../../wallpapers/firewatch.jpg;
-  vm.guest-services.enable = true;
 }

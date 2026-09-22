@@ -1,0 +1,99 @@
+{ browser, terminal, lib, ... }:
+let
+  mkLuaInline = lib.generators.mkLuaInline;
+in
+{
+  wayland.windowManager.hyprland.settings = {
+    bind = [
+      { _args = [ "$modifier,Return,exec,${terminal}" ]; }
+      { _args = [ "$modifier,K,exec,list-keybinds" ]; }
+      { _args = [ "$modifier SHIFT,Return,exec,rofi-launcher" ]; }
+      { _args = [ "$modifier SHIFT,W,exec,web-search" ]; }
+      { _args = [ "$modifier ALT,W,exec,wallsetter" ]; }
+      { _args = [ "$modifier SHIFT,N,exec,swaync-client -rs" ]; }
+      { _args = [ "$modifier,W,exec,firefox" ]; }
+      { _args = [ "$modifier,Y,exec,kitty -e yazi" ]; }
+      { _args = [ "$modifier,E,exec,emopicker9000" ]; }
+      { _args = [ "$modifier,S,exec,screenshootin" ]; }
+      { _args = [ "$modifier,D,exec,discord" ]; }
+      { _args = [ "$modifier,O,exec,obs" ]; }
+      { _args = [ "$modifier,C,exec,hyprpicker -a" ]; }
+      { _args = [ "$modifier,G,exec,gimp" ]; }
+      { _args = [ "$modifier,T,exec,pypr toggle term" ]; }
+      { _args = [ "$modifier,M,exec,pavucontrol" ]; }
+      { _args = [ "$modifier,Q,killactive," ]; }
+      { _args = [ "$modifier,P,pseudo," ]; }
+      { _args = [ "$modifier SHIFT,I,togglesplit," ]; }
+      { _args = [ "$modifier,F,fullscreen," ]; }
+      { _args = [ "$modifier SHIFT,F,togglefloating," ]; }
+      { _args = [ "$modifier ALT,F,workspaceopt, allfloat" ]; }
+      { _args = [ "$modifier SHIFT,C,exit," ]; }
+      { _args = [ "$modifier SHIFT,left,movewindow,l" ]; }
+      { _args = [ "$modifier SHIFT,right,movewindow,r" ]; }
+      { _args = [ "$modifier SHIFT,up,movewindow,u" ]; }
+      { _args = [ "$modifier SHIFT,down,movewindow,d" ]; }
+      { _args = [ "$modifier SHIFT,h,movewindow,l" ]; }
+      { _args = [ "$modifier SHIFT,l,movewindow,r" ]; }
+      { _args = [ "$modifier SHIFT,k,movewindow,u" ]; }
+      { _args = [ "$modifier SHIFT,j,movewindow,d" ]; }
+      { _args = [ "$modifier ALT, left, swapwindow,l" ]; }
+      { _args = [ "$modifier ALT, right, swapwindow,r" ]; }
+      { _args = [ "$modifier ALT, up, swapwindow,u" ]; }
+      { _args = [ "$modifier ALT, down, swapwindow,d" ]; }
+      { _args = [ "$modifier ALT, 43, swapwindow,l" ]; }
+      { _args = [ "$modifier ALT, 46, swapwindow,r" ]; }
+      { _args = [ "$modifier ALT, 45, swapwindow,u" ]; }
+      { _args = [ "$modifier ALT, 44, swapwindow,d" ]; }
+      { _args = [ "$modifier,left,movefocus,l" ]; }
+      { _args = [ "$modifier,right,movefocus,r" ]; }
+      { _args = [ "$modifier,up,movefocus,u" ]; }
+      { _args = [ "$modifier,down,movefocus,d" ]; }
+      { _args = [ "$modifier,h,movefocus,l" ]; }
+      { _args = [ "$modifier,l,movefocus,r" ]; }
+      { _args = [ "$modifier,k,movefocus,u" ]; }
+      { _args = [ "$modifier,j,movefocus,d" ]; }
+      { _args = [ "$modifier,1,workspace,1" ]; }
+      { _args = [ "$modifier,2,workspace,2" ]; }
+      { _args = [ "$modifier,3,workspace,3" ]; }
+      { _args = [ "$modifier,4,workspace,4" ]; }
+      { _args = [ "$modifier,5,workspace,5" ]; }
+      { _args = [ "$modifier,6,workspace,6" ]; }
+      { _args = [ "$modifier,7,workspace,7" ]; }
+      { _args = [ "$modifier,8,workspace,8" ]; }
+      { _args = [ "$modifier,9,workspace,9" ]; }
+      { _args = [ "$modifier,0,workspace,10" ]; }
+      { _args = [ "$modifier SHIFT,SPACE,movetoworkspace,special" ]; }
+      { _args = [ "$modifier,SPACE,togglespecialworkspace" ]; }
+      { _args = [ "$modifier SHIFT,1,movetoworkspace,1" ]; }
+      { _args = [ "$modifier SHIFT,2,movetoworkspace,2" ]; }
+      { _args = [ "$modifier SHIFT,3,movetoworkspace,3" ]; }
+      { _args = [ "$modifier SHIFT,4,movetoworkspace,4" ]; }
+      { _args = [ "$modifier SHIFT,5,movetoworkspace,5" ]; }
+      { _args = [ "$modifier SHIFT,6,movetoworkspace,6" ]; }
+      { _args = [ "$modifier SHIFT,7,movetoworkspace,7" ]; }
+      { _args = [ "$modifier SHIFT,8,movetoworkspace,8" ]; }
+      { _args = [ "$modifier SHIFT,9,movetoworkspace,9" ]; }
+      { _args = [ "$modifier SHIFT,0,movetoworkspace,10" ]; }
+      { _args = [ "$modifier CONTROL,right,workspace,e+1" ]; }
+      { _args = [ "$modifier CONTROL,left,workspace,e-1" ]; }
+      { _args = [ "$modifier,mouse_down,workspace, e+1" ]; }
+      { _args = [ "$modifier,mouse_up,workspace, e-1" ]; }
+      { _args = [ "ALT,Tab,cyclenext" ]; }
+      { _args = [ "ALT,Tab,bringactivetotop" ]; }
+      { _args = [ ",XF86AudioRaiseVolume,exec,wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+" ]; }
+      { _args = [ ",XF86AudioLowerVolume,exec,wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-" ]; }
+      { _args = [ " ,XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle" ]; }
+      { _args = [ ",XF86AudioPlay, exec, playerctl play-pause" ]; }
+      { _args = [ ",XF86AudioPause, exec, playerctl play-pause" ]; }
+      { _args = [ ",XF86AudioNext, exec, playerctl next" ]; }
+      { _args = [ ",XF86AudioPrev, exec, playerctl previous" ]; }
+      { _args = [ ",XF86MonBrightnessDown,exec,brightnessctl set 5%-" ]; }
+      { _args = [ ",XF86MonBrightnessUp,exec,brightnessctl set +5%" ]; }
+    ];
+
+    bindm = [
+      { _args = [ "$modifier, mouse:272, movewindow" ]; }
+      { _args = [ "$modifier, mouse:273, resizewindow" ]; }
+    ];
+  };
+}

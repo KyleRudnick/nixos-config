@@ -4,6 +4,7 @@
 {
   imports = [
     ./amd-drivers.nix
+    ./builder.nix
     ./intel-drivers.nix
     ./local-hardware-clock.nix
     ./nvidia-drivers.nix

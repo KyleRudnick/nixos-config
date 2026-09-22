@@ -1,12 +1,12 @@
 {
   pkgs,
-  host,
+  hostname,
   options,
   ...
 }:
 {
   networking = {
-    hostName = "${host}";
+    hostName = hostname;
     networkmanager.enable = true;
     timeServers = options.networking.timeServers.default ++ [ "pool.ntp.org" ];
     firewall = {

@@ -1,7 +1,4 @@
-{ host, ... }:
-let
-  inherit (import ../../hosts/${host}/variables.nix) consoleKeyMap;
-in
+{ consoleKeyMap, ... }:
 {
   nix = {
     settings = {
@@ -12,7 +9,7 @@ in
         "flakes"
       ];
       substituters = [ "https://hyprland.cachix.org" ];
-      trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
+      trusted-public-keys = [ "hyprland.cachix.org:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
     };
   };
   time.timeZone = "Europe/Berlin";
@@ -28,11 +25,6 @@ in
     LC_TELEPHONE = "en_US.UTF-8";
     LC_TIME = "en_US.UTF-8";
   };
-  environment.variables = {
-    ZANEYOS_VERSION = "2.3.1";
-    ZANEYOS = "true";
-    TEST = "lol";
-  };
-  console.keyMap = "${consoleKeyMap}";
-  system.stateVersion = "23.11"; # Do not change!
+  console.keyMap = consoleKeyMap;
+  system.stateVersion = "26.05";
 }

@@ -3,28 +3,19 @@
   imports = [
     ./boot.nix
     ./caching.nix
-    ./flatpak.nix
-    ./fonts.nix
-    ./greetd.nix
     ./hardware.nix
+    ./minimal.nix
     ./network.nix
     ./nfs.nix
     ./nh.nix
-    ./packages.nix
-    ./packages-unstable.nix
-    ./printing.nix
     ./security.nix
     ./services.nix
     ./ssh.nix
-    ./starfish.nix
-    ./steam.nix
-    ./stylix.nix
     ./syncthing.nix
     ./system.nix
-    ./thunar.nix
     ./user.nix
-    ./virtualisation.nix
-    ./xserver.nix
+    ./utils.nix
+    ../drivers
     inputs.stylix.nixosModules.stylix
   ];
 }

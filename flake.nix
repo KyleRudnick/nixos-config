@@ -3,13 +3,13 @@
 
   inputs = {
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.05";
+      url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
     zellij-nightly.url = "github:a-kenji/zellij-nix";
     zellij-nightly.inputs.nixpkgs.follows = "nixpkgs-unstable";
-    stylix.url = "github:danth/stylix/release-25.05";
+    stylix.url = "github:danth/stylix/release-26.05";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
   };
 
@@ -22,47 +22,31 @@
     }@inputs:
     let
       system = "x86_64-linux";
-      host = "kyle";
-      profile = "desktop";
-      username = "kyle";
+      cfg = import ./config.nix;
       pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
+
+      hostsDir = ./hosts;
+      hostNames = builtins.attrNames (builtins.readDir hostsDir);
+
+      mkHost = hostname:
+        let local = import (hostsDir + "/${hostname}/local.nix");
+        in {
+          name = hostname;
+          value = nixpkgs.lib.nixosSystem {
+            inherit system;
+            specialArgs = {
+              inherit inputs;
+              inherit (local) hostname username profile gui;
+              inherit (local) extraMonitorSettings intelID nvidiaID;
+              inherit (cfg) gitUsername gitEmail browser terminal keyboardLayout consoleKeyMap clock24h thunarEnable waybarChoice;
+              inherit pkgs-unstable;
+              inherit zellij-nightly;
+            };
+            modules = [ (hostsDir + "/${hostname}") ];
+          };
+        };
     in
     {
-      nixosConfigurations = {
-        amd = nixpkgs.lib.nixosSystem {
-          inherit system;
-          specialArgs = {
-            inherit inputs;
-            inherit username;
-            inherit host;
-            inherit profile;
-            inherit pkgs-unstable;
-          };
-          modules = [ ./profiles/amd ];
-        };
-        desktop = nixpkgs.lib.nixosSystem {
-          inherit system;
-          specialArgs = {
-            inherit zellij-nightly;
-            inherit inputs;
-            inherit username;
-            inherit host;
-            inherit profile;
-            inherit pkgs-unstable;
-          };
-          modules = [ ./profiles/desktop ];
-        };
-        vm = nixpkgs.lib.nixosSystem {
-          inherit system;
-          specialArgs = {
-            inherit inputs;
-            inherit username;
-            inherit host;
-            inherit profile;
-            inherit pkgs-unstable;
-          };
-          modules = [ ./profiles/vm ];
-        };
-      };
+      nixosConfigurations = builtins.listToAttrs (map mkHost hostNames);
     };
 }
