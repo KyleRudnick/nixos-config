@@ -10,6 +10,7 @@
     ./nh.nix
     ./security.nix
     ./services.nix
+    ./sops.nix
     ./ssh.nix
     ./syncthing.nix
     ./system.nix

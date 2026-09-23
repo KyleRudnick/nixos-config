@@ -43,6 +43,7 @@ echo "Profiles:"
 echo "  1) desktop  - Full system with home-manager and all user packages"
 echo "  2) laptop   - Full system with GUI support and home-manager"
 echo "  3) vm       - Minimal system without GUI (CLI-focused, QEMU guest services)"
+echo "  4) wsl      - Windows Subsystem for Linux (no GUI, no GPU drivers)"
 echo ""
 
 while true; do
@@ -52,13 +53,14 @@ while true; do
     1|desktop)  profile="desktop"; break ;;
     2|laptop)   profile="laptop"; break ;;
     3|vm)       profile="vm"; break ;;
-    *)          echo "  Invalid choice. Enter 1, 2, 3, or the profile name." ;;
+    4|wsl)      profile="wsl"; break ;;
+    *)          echo "  Invalid choice. Enter 1, 2, 3, 4, or the profile name." ;;
   esac
 done
 
-# --- GUI environment selection (skip for vm) ---
+# --- GUI environment selection (skip for vm and wsl) ---
 gui="none"
-if [ "$profile" != "vm" ]; then
+if [ "$profile" != "vm" ] && [ "$profile" != "wsl" ]; then
   echo ""
   echo "GUI Environment:"
   echo "  1) hyprland  - Hyprland (tiling window manager)"
@@ -76,33 +78,35 @@ if [ "$profile" != "vm" ]; then
   done
 fi
 
-# --- GPU driver selection ---
-echo ""
-echo "GPU drivers:"
-echo "  1) nvidia       - Nvidia proprietary drivers"
-echo "  2) amd          - AMD GPU drivers (amdgpu + ROCm)"
-echo "  3) intel        - Intel graphics (media driver, vaapi)"
-echo "  4) nvidia-prime - Hybrid GPU offload (Intel iGPU + Nvidia dGPU)"
-echo "  5) none         - No dedicated GPU drivers"
-echo ""
-
+# --- GPU driver selection (skip for wsl) ---
 enable_nvidia="false"
 enable_amd="false"
 enable_intel="false"
 enable_prime="false"
 
-while true; do
-  read -rp "GPU driver [none]: " gpu_input
-  gpu_input="${gpu_input:-5}"
-  case "$gpu_input" in
-    1|nvidia)       enable_nvidia="true"; break ;;
-    2|amd)          enable_amd="true"; break ;;
-    3|intel)        enable_intel="true"; break ;;
-    4|nvidia-prime) enable_prime="true"; enable_nvidia="true"; break ;;
-    5|none)         break ;;
-    *)              echo "  Invalid choice. Enter 1, 2, 3, 4, 5, or the driver name." ;;
-  esac
-done
+if [ "$profile" != "wsl" ]; then
+  echo ""
+  echo "GPU drivers:"
+  echo "  1) nvidia       - Nvidia proprietary drivers"
+  echo "  2) amd          - AMD GPU drivers (amdgpu + ROCm)"
+  echo "  3) intel        - Intel graphics (media driver, vaapi)"
+  echo "  4) nvidia-prime - Hybrid GPU offload (Intel iGPU + Nvidia dGPU)"
+  echo "  5) none         - No dedicated GPU drivers"
+  echo ""
+
+  while true; do
+    read -rp "GPU driver [none]: " gpu_input
+    gpu_input="${gpu_input:-5}"
+    case "$gpu_input" in
+      1|nvidia)       enable_nvidia="true"; break ;;
+      2|amd)          enable_amd="true"; break ;;
+      3|intel)        enable_intel="true"; break ;;
+      4|nvidia-prime) enable_prime="true"; enable_nvidia="true"; break ;;
+      5|none)         break ;;
+      *)              echo "  Invalid choice. Enter 1, 2, 3, 4, 5, or the driver name." ;;
+    esac
+  done
+fi
 
 # --- Nvidia-prime bus IDs (only if prime selected) ---
 intel_id="PCI:1:0:0"
@@ -118,10 +122,30 @@ if [ "$enable_prime" = "true" ]; then
   nvidia_id="${nvidia_id_input:-$nvidia_id}"
 fi
 
+# --- WSL-specific settings ---
+if [ "$profile" = "wsl" ]; then
+  echo ""
+  echo "WSL Profile Selected:"
+  echo "  - No GUI (headless)"
+  echo "  - No GPU drivers (handled by Windows)"
+  echo "  - WSL module enabled"
+  echo ""
+fi
+
 # --- Generate hardware.nix ---
 echo ""
 echo "Generating hardware configuration..."
-if command -v nixos-generate-config &>/dev/null; then
+if [ "$profile" = "wsl" ]; then
+  echo "  WSL profile detected. Creating minimal hardware.nix."
+  cat > "$HOST_DIR/hardware.nix" << 'HARDWARENIX'
+# WSL hardware configuration - minimal for Windows Subsystem for Linux
+{ ... }:
+{
+  # WSL handles hardware through Windows
+  # This file is a placeholder for the NixOS module system
+}
+HARDWARENIX
+elif command -v nixos-generate-config &>/dev/null; then
   sudo nixos-generate-config --show-hardware-config > "$HOST_DIR/hardware.nix"
   echo "  hardware.nix generated from current system."
 else

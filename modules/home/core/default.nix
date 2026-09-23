@@ -9,6 +9,7 @@
     ./devenv.nix
     ./evil-helix.nix
     ./eza.nix
+    ./fish.nix
     ./fzf.nix
     ./gh.nix
     ./git.nix
@@ -16,6 +17,7 @@
     ./htop.nix
     ./lazygit.nix
     ./neovim.nix
+    ./sops.nix
     ./starship.nix
     ./tmux.nix
     ./yazi

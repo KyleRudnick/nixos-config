@@ -26,15 +26,44 @@
     useGlobalPkgs = false;
     backupFileExtension = "backup";
     extraSpecialArgs = {
-      inherit inputs username gitUsername gitEmail gui waybarChoice pkgs-unstable extraMonitorSettings keyboardLayout consoleKeyMap terminal browser clock24h thunarEnable;
+      inherit
+        inputs
+        username
+        gitUsername
+        gitEmail
+        gui
+        waybarChoice
+        pkgs-unstable
+        extraMonitorSettings
+        keyboardLayout
+        consoleKeyMap
+        terminal
+        browser
+        clock24h
+        thunarEnable
+        ;
       stylixImage = config.stylixImage;
     };
     users.${username} = {
-      imports = if gui == "none" then [ ./../home/core ] else [ ./../home ];
+      imports = [
+        inputs.sops-nix.homeManagerModules.sops
+      ]
+      ++ (if gui == "none" then [ ./../home/core ] else [ ./../home ]);
       home = {
         username = "${username}";
         homeDirectory = "/home/${username}";
         stateVersion = "26.05";
+      };
+      sops = {
+        age.keyFile = "/home/${username}/.config/sops/age/keys.txt";
+        age.generateKey = true;
+        defaultSopsFile = ../../secrets.yaml;
+        secrets = {
+          # OPENROUTER_API_KEY = { };
+          # OPENCODE_ZEN_GO_API_KEY = { };
+          # github_token = { };
+          # github_access_key = { };
+        };
       };
     };
   };

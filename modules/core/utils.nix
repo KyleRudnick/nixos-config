@@ -35,6 +35,7 @@
     pciutils
     pkg-config
     ripgrep
+    sops
     socat
     sox
     unrar
