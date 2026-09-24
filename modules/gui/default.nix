@@ -8,7 +8,6 @@
     ./misc.nix
     ./printing.nix
     ./starfish.nix
-    ./stylix.nix
     ./thunar.nix
     ./virtualisation.nix
     ./xserver.nix

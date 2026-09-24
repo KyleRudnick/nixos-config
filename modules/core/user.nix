@@ -23,7 +23,7 @@
 
   home-manager = lib.mkIf (!config.local.minimal) {
     useUserPackages = true;
-    useGlobalPkgs = false;
+    useGlobalPkgs = true;
     backupFileExtension = "backup";
     extraSpecialArgs = {
       inherit

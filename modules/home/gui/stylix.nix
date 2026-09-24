@@ -1,12 +1,13 @@
 _: {
   stylix.targets = {
     neovim.enable = true;
-    waybar.enable = false;
+    ghostty.enable = true;
     kitty.enable = true;
+
     rofi.enable = false;
+    waybar.enable = false;
     hyprland.enable = false;
     hyprlock.enable = false;
-    ghostty.enable = true;
     qt.enable = true;
   };
 }
