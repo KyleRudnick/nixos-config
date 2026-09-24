@@ -1,7 +1,9 @@
 keys:
   - &primary age1gskavr832cne00vazlnx29sllndaksq94u4l9lqpv26ewvxlpf0saxu2nl
+  - &lenovox1 age1h674naqw6znutvtqumjt5vx834wedwg4hzym8vuz7m5c4zlnvq4sr98kpv
 creation_rules:
   - path_regex: secrets.yaml$
     key_groups:
       - age:
         - *primary
+        - *lenovox1
